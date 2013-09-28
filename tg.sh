@@ -33,7 +33,8 @@ compare_versions()
 
 precheck() {
 	git_ver=$(git version)
-	compare_versions . ${git_ver#git version} ${GIT_MINIMUM_VERSION} \
+	# on apple platform the git version may have suffix "(Apple Git-XX)"
+	compare_versions . "${git_ver#git version}" ${GIT_MINIMUM_VERSION} \
 	    || die "git version >= " ${GIT_MINIMUM_VERSION} required
 }
 
