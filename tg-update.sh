@@ -31,7 +31,7 @@ while [ -n "$1" ]; do
 done
 [ -z "$pattern" ] && pattern=refs/top-bases
 
-current="$(git symbolic-ref HEAD 2>/dev/null | sed 's#^refs/\(heads\|top-bases\)/##')"
+current="$(git symbolic-ref HEAD 2>/dev/null | perl -pi -e 's#^refs/(heads|top-bases)/##')"
 if [ -z "$all" ]; then
 	if [ -z "$name" ]; then
 		name="$current"
